@@ -30,4 +30,4 @@
 ./build.sh -u -v 1.1.0 --image
 ```
 
-sniffer以及nebula主项目安装运行方法请参考二进制安装部分
+`sniffer`流量抓取服务以及`nebula`主项目安装运行方法请参考二进制安装部分
