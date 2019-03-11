@@ -151,14 +151,14 @@ source /etc/profile
 	docker-compose pull
 	```
 
-- 2. 进入目录  	
+- 2. 进入目录：
 	```
-    	cd nebula_sniffer
+	cd nebula_sniffer
 	```
 	
-- 3. 配置文件修改安装(只需第一次执行)
+- 3. 配置文件修改安装(只需第一次执行)：
 	```
-   	配置文件docker-compose.yml（直接修改此文件即可）
+	配置文件docker-compose.yml（直接修改此文件即可）
 	  environment:
 	   - REDIS_HOST=127.0.0.1  # 远程redisIP
 	   - REDIS_PORT=26379      # 远程redis端口
