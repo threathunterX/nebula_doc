@@ -178,7 +178,7 @@ source /etc/profile
 	
 - 构建镜像(仅在初次安装以及版本更新时进行此步骤)
 	```
-	sudo docker build . -t nebula_sniffer:v1.0.1
+	sudo docker build . -t nebula_sniffer:v1.1.0
 	```
 
 ## 其他说明
