@@ -122,19 +122,15 @@ source /etc/profile
 	![a2. 安装过程截图](http://www.z4a.net/images/2018/11/29/a2.png)
 
 - 启动系统
-
 	```
 	./ctrl.sh start
 	```
-	
 	![a3. 启动过程截图](http://www.z4a.net/images/2018/11/29/a3.png)
 
 - 查看运行状态
-
 	  ```
 	  ./ctrl.sh status
 	  ```
-
 	  ![a4. 查看运行状态](http://www.z4a.net/images/2018/11/29/a4.png)
 
 
