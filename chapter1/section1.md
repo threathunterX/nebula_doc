@@ -104,21 +104,14 @@ source /etc/profile
 
 ### 安装步骤
 
-首先, 拷贝 `TH-Nebula`最新安装包到服务器, 然后
 
-- 解压
-
-	```
-	tar -zxvf nebula.v1.0.0_2018_11_23.tar.gz
-	```
-
-- 进入目录
+- 拉取Docker镜像：
 
 	```
-	cd nebula.v1.0.0_2018_11_23
+	git clone --recursive https://github.com/threathunterX/nebula.git
+	cd nebula
+	docker-compose pull
 	```
-	
-	![a1. 目录内容](http://www.z4a.net/images/2018/11/29/a1.png)
 
 - 运行安装脚本
 
@@ -148,22 +141,24 @@ source /etc/profile
 ## 流量抓取客户端sniffer安装
 
 
-目前我们直接使用打包好的`Python`虚拟已经,以及打包好的`Bro`软件包, 所以目前暂时不用考虑, `Python`虚拟环境构造以及`Bro`离线抓取流量的安装. 
 
 ### 安装步骤
 
-首先拷贝 `nebula_sniffer.tar.gz`到需要监控的业务所在服务器, 然后
-- 1. 解压		
+- 1. 拉取Docker镜像：
 	```
-    tar -zxvf nebula_sniffer.tar.gz
+	git clone --recursive https://github.com/threathunterX/sniffer.git
+	cd sniffer
+	docker-compose pull
 	```
+
 - 2. 进入目录  	
 	```
-    cd nebula_sniffer
+    	cd nebula_sniffer
 	```
+	
 - 3. 配置文件修改安装(只需第一次执行)
 	```
-   配置文件docker-compose.yml（直接修改此文件即可）
+   	配置文件docker-compose.yml（直接修改此文件即可）
 	  environment:
 	   - REDIS_HOST=127.0.0.1  # 远程redisIP
 	   - REDIS_PORT=26379      # 远程redis端口
@@ -172,19 +167,19 @@ source /etc/profile
 	   - DRIVER_INTERFACE=eth0 # 监听网卡
 	   - DRIVER_PORT=80,9001   # 业务服务端口
 	```
-- 4. 构建镜像
-	```
-	ps：仅在初次安装以及版本更新时进行此步骤
-	sudo docker build . -t nebula_sniffer:v1.0.1
-    ```
-- 5.启动停止镜像
+    
+- 4.启动停止镜像
     ```
     1,启动镜像
         docker-compose up -d
     2,停止镜像  
         docker-compose down
     ```
-  
+	
+- 5. 构建镜像(仅在初次安装以及版本更新时进行此步骤)
+	```
+	sudo docker build . -t nebula_sniffer:v1.0.1
+	```
 
 ## 其他说明
 
