@@ -144,19 +144,19 @@ source /etc/profile
 
 ### 安装步骤
 
-- 1. 拉取Docker镜像：
+- 拉取Docker镜像：
 	```
 	git clone --recursive https://github.com/threathunterX/sniffer.git
 	cd sniffer
 	docker-compose pull
 	```
 
-- 2. 进入目录：
+- 进入目录：
 	```
 	cd nebula_sniffer
 	```
 	
-- 3. 配置文件修改安装(只需第一次执行)：
+- 配置文件修改安装(只需第一次执行)：
 	```
 	配置文件docker-compose.yml（直接修改此文件即可）
 	  environment:
@@ -168,15 +168,15 @@ source /etc/profile
 	   - DRIVER_PORT=80,9001   # 业务服务端口
 	```
     
-- 4.启动停止镜像
+- 启动停止镜像：
 	```
-	1,启动镜像
+	1) 启动镜像
 	docker-compose up -d
-	2,停止镜像  
+	2) 停止镜像  
 	docker-compose down
 	```
 	
-- 5. 构建镜像(仅在初次安装以及版本更新时进行此步骤)
+- 构建镜像(仅在初次安装以及版本更新时进行此步骤)
 	```
 	sudo docker build . -t nebula_sniffer:v1.0.1
 	```
