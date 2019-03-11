@@ -131,11 +131,11 @@ source /etc/profile
 
 - 查看运行状态
 
-  ```
-  ./ctrl.sh status
-  ```
+	  ```
+	  ./ctrl.sh status
+	  ```
 
-  ![a4. 查看运行状态](http://www.z4a.net/images/2018/11/29/a4.png)
+	  ![a4. 查看运行状态](http://www.z4a.net/images/2018/11/29/a4.png)
 
 
 ## 流量抓取客户端sniffer安装
@@ -169,12 +169,12 @@ source /etc/profile
 	```
     
 - 4.启动停止镜像
-    ```
-    1,启动镜像
-        docker-compose up -d
-    2,停止镜像  
-        docker-compose down
-    ```
+	```
+	1,启动镜像
+	docker-compose up -d
+	2,停止镜像  
+	docker-compose down
+	```
 	
 - 5. 构建镜像(仅在初次安装以及版本更新时进行此步骤)
 	```
