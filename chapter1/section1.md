@@ -172,10 +172,6 @@ source /etc/profile
 	docker-compose down
 	```
 	
-- 构建镜像(仅在初次安装以及版本更新时进行此步骤)
-	```
-	docker-compose build
-	```
 
 ## 其他说明
 
