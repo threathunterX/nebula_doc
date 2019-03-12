@@ -149,15 +149,15 @@ source /etc/profile
 
 - 进入目录：
 	```
-	cd nebula_sniffer
+	cd sniffer
 	```
 	
-- 配置文件修改安装(只需第一次执行)：
+- 配置修改：
 	```
 	配置文件docker-compose.yml（直接修改此文件即可）
 	  environment:
 	   - REDIS_HOST=127.0.0.1  # 远程redisIP
-	   - REDIS_PORT=26379      # 远程redis端口
+	   - REDIS_PORT=16379      # 远程redis端口
 	   - NEBULA_HOST=127.0.0.1 # 远程nebula服务IP
 	   - NEBULA_PORT=9001      # 远程nebulaIP
 	   - DRIVER_INTERFACE=eth0 # 监听网卡
@@ -174,7 +174,7 @@ source /etc/profile
 	
 - 构建镜像(仅在初次安装以及版本更新时进行此步骤)
 	```
-	sudo docker build . -t nebula_sniffer:v1.1.0
+	docker-compose build
 	```
 
 ## 其他说明
