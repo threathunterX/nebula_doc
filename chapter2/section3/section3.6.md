@@ -14,4 +14,5 @@
 </video>
 {% endraw %}
 
+视频链接: http://112.74.58.210:8080/assets/video/The%20rules%20of%20teaching.mp4
   
