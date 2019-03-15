@@ -73,23 +73,23 @@ http://127.0.0.1:9001/checkRisk?auth=7a7c4182f1bef7504a1d3d5eaa51a242&query=%7b>
 *数据示例:*
 ```json
 {
-	"remark": ">100, avg < 0.8, in 5m, web", //触发策略的备注说明
-	"geo_city": "深圳市", 
+	"remark": ">100, avg < 0.8, in 5m, web", //风险备注
+	"geo_city": "深圳市", //市
 	"checkpoints": "",
 	"timestamp": 1552635533123, //触发时间
-	"decision": "review", //决策方式，跟策略的配置有关
+	"decision": "review", //风险决策，跟策略的配置有关
 	"tip": "IP页面停留时间过短Web",
 	"variable_values": "",
-	"risk_score": 0,
+	"risk_score": 0, //风险分值
 	"test": 0, //是否是测试策略
 	"strategy_name": "IP页面停留时间过短Web", //触发策略名
 	"expire": 1552635833123, //过期时间，跟策略的配置有关
-	"key": "183.15.177.209", //风险名单
-	"scene_name": "VISITOR", //场景: `OTHER`, `VISITOR`, `ACCOUNT`, `MARKETING`, `ORDER`, `TRANSACTION` 
-	"uri_stem": "112.74.58.210/user", //uri
-	"trigger_event": "{\"s_ip\": \"172.18.16.169\", \"app\": \"nebula\", \"pid\": \"000000000000000000000000\", \"s_type\": \"text/html; charset=utf-8\", \"uri_stem\": \"112.74.58.210/user\", \"c_bytes\": 0, \"id\": \"5c8b568c12a3650017e176e4\", \"uid\": \"\", \"request_time\": 3, \"platform\": \"\", \"s_body\": \"\", \"sid\": \"\", \"s_port\": 9001, \"method\": \"GET\", \"status\": 200, \"is_static\": false, \"geo_city\": \"\深\圳\市\", \"c_body\": \"\", \"timestamp\": 1552635532701, \"geo_province\": \"\广\东\省\", \"host\": \"112.74.58.210\", \"referer\": \"\", \"c_ip\": \"183.15.177.209\", \"key\": \"183.15.177.209\", \"useragent\": \"python-requests/2.11.1\", \"c_port\": 18311, \"xforward\": \"\", \"c_type\": \"\", \"name\": \"HTTP_DYNAMIC\", \"did\": \"\", \"s_bytes\": 648, \"request_type\": \"\", \"value\": 1.0, \"cookie\": \"group_id=2|1:0|10:1540368603|8:group_id|4:Mg==|30789028a7e8399f5f5ef115fc050e1b3424df25b966755be7554e0048dd29a4; user_id=2|1:0|10:1540368603|7:user_id|4:Mg==|141555b29c711f95ddebea3987820fb90c30a48f506eae9f8cee9b334372ae79; user=attack_test; auth=2|1:0|10:1540368603|4:auth|44:NGJlZTQwMDI0NTExYjM2NDVkNjkzOTM1ZTJmMDllMWY=|34718dcbcac603ee1a38daaa0a05fbafc524873af0fafb0013077a53a28b2d4b\", \"page\": \"112.74.58.210/user\", \"uri_query\": \"\", \"referer_hit\": \"F\"}",
-	"geo_province": "广东省",
-	"check_type": "IP" //风险名单类型, ` IP` , `DEVICE ID`, `USER`, `ORDERID`
+	"key": "183.15.177.209", //风险值
+	"scene_name": "VISITOR", //风险场景: `OTHER`, `VISITOR`, `ACCOUNT`, `MARKETING`, `ORDER`, `TRANSACTION` 
+	"uri_stem": "112.74.58.210/user", //关联页面
+	"trigger_event": "{\"s_ip\": \"172.18.16.169\", \"app\": \"nebula\", \"pid\": \"000000000000000000000000\", \"s_type\": \"text/html; charset=utf-8\", \"uri_stem\": \"112.74.58.210/user\", \"c_bytes\": 0, \"id\": \"5c8b568c12a3650017e176e4\", \"uid\": \"\", \"request_time\": 3, \"platform\": \"\", \"s_body\": \"\", \"sid\": \"\", \"s_port\": 9001, \"method\": \"GET\", \"status\": 200, \"is_static\": false, \"geo_city\": \"\深\圳\市\", \"c_body\": \"\", \"timestamp\": 1552635532701, \"geo_province\": \"\广\东\省\", \"host\": \"112.74.58.210\", \"referer\": \"\", \"c_ip\": \"183.15.177.209\", \"key\": \"183.15.177.209\", \"useragent\": \"python-requests/2.11.1\", \"c_port\": 18311, \"xforward\": \"\", \"c_type\": \"\", \"name\": \"HTTP_DYNAMIC\", \"did\": \"\", \"s_bytes\": 648, \"request_type\": \"\", \"value\": 1.0, \"cookie\": \"group_id=2|1:0|10:1540368603|8:group_id|4:Mg==|30789028a7e8399f5f5ef115fc050e1b3424df25b966755be7554e0048dd29a4; user_id=2|1:0|10:1540368603|7:user_id|4:Mg==|141555b29c711f95ddebea3987820fb90c30a48f506eae9f8cee9b334372ae79; user=attack_test; auth=2|1:0|10:1540368603|4:auth|44:NGJlZTQwMDI0NTExYjM2NDVkNjkzOTM1ZTJmMDllMWY=|34718dcbcac603ee1a38daaa0a05fbafc524873af0fafb0013077a53a28b2d4b\", \"page\": \"112.74.58.210/user\", \"uri_query\": \"\", \"referer_hit\": \"F\"}", //触发事件
+	"geo_province": "广东省", //省
+	"check_type": "IP" //值类型, 如：` IP` , `DEVICE ID`, `USER`, `ORDERID`
 }
 ```
 
