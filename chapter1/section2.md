@@ -38,7 +38,7 @@
   编译`docker`镜像：
   ```
   git clone --recursive https://github.com/threathunterX/sniffer.git
-  cd nebula
+  cd sniffer
   docker-compose build
   ```
   
