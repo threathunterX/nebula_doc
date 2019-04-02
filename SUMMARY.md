@@ -22,5 +22,6 @@
     * [3.3. 架构设计](chapter3/section3.md)
 * [4. 实践经验](chapter4/section0.md)
 * [5. 二次开发](chapter5/section0.md)
+   * [5.1. Sniffer原理及驱动定制](chapter5/section1.md)
 * [6. FAQ](chapter6/section0.md)
 
