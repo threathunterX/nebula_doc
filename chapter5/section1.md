@@ -161,6 +161,15 @@ syslog:
         name: test
         module: testparser
 
+#对应kafkadriver.py
+kafka:
+    driver: kafka
+    interface: any
+    bootstrap_servers: 127.0.0.1:9092
+    parser:
+        name: test
+        module: testparser
+        
 ...其他省略...
 
 ```
@@ -168,7 +177,7 @@ syslog:
 #### 驱动定制(消息格式化)
 --------
 
-    **此部分需根据自己业务进行修改定制**
+
     
 所有驱动位于:
     
@@ -193,6 +202,104 @@ syslog:
             syslogtextdriver.py
         #tshark驱动
             tsharkhttpsdriver.py
+
+
+
+sniffer会根据sniffer配置加载对应驱动：
+
+```
+def get_driver(config, interface, parser, idx):
+    """ global c """
+
+    from complexconfig.configcontainer import configcontainer
+    
+    #不同driver，初始化方式不同
+    name = config['driver']
+    if name == "bro":
+        from nebula_sniffer.drivers.brohttpdriver import BroHttpDriver
+        embedded = config.get("embedded", True)
+        ports = config['ports']
+        from nebula_sniffer.utils import expand_ports
+        ports = expand_ports(ports)  # extend it
+        start_port = int(config['start_port'])
+        bpf_filter = config.get("bpf_filter", "")
+
+        home = configcontainer.get_config("sniffer").get_string("sniffer.bro.home")
+
+        if ports and home:
+            driver = BroHttpDriver(interface=interface, embedded_bro=embedded, idx=idx, ports=ports, bro_home=home,
+                                   start_port=start_port, bpf_filter=bpf_filter)
+        elif ports:
+            driver = BroHttpDriver(interface=interface, embedded_bro=embedded, idx=idx, ports=ports,
+                                   start_port=start_port, bpf_filter=bpf_filter)
+        elif home:
+            driver = BroHttpDriver(interface=interface, embedded_bro=embedded, idx=idx, bro_home=home,
+                                   start_port=start_port, bpf_filter=bpf_filter)
+        else:
+            driver = BroHttpDriver(interface=interface, embedded_bro=embedded, idx=idx,
+                                   start_port=start_port, bpf_filter=bpf_filter)
+        return driver
+
+    if name == "tshark":
+        from nebula_sniffer.drivers.tsharkhttpsdriver import TsharkHttpsDriver
+        interface = interface
+        ports = config["ports"]
+        bpf_filter = config.get("bpf_filter", "")
+        if ports:
+            driver = TsharkHttpsDriver(interface=interface, ports=ports, bpf_filter=bpf_filter)
+        else:
+            driver = TsharkHttpsDriver(interface=interface, bpf_filter=bpf_filter)
+        return driver
+
+    if name == "syslog":
+        from nebula_sniffer.drivers.syslogdriver import SyslogDriver
+        port = int(config["port"])
+        driver = SyslogDriver(port)
+        return driver
+
+    if name == "packetbeat":
+        from nebula_sniffer.drivers.pktdriver import PacketbeatDriver
+        port = int(config["port"])
+        driver = PacketbeatDriver(port)
+        return driver
+
+    if name == "redislist":
+        from nebula_sniffer.drivers.redislistdriver import RedisListDriver
+        host = config["host"]
+        port = int(config['port'])
+        password = config.get('password', '')
+        driver = RedisListDriver(host, port, password)
+        return driver
+
+    if name == "logstash":
+        from nebula_sniffer.drivers.logstashdriver import LogstashDriver
+        port = int(config['port'])
+        driver = LogstashDriver(port)
+        return driver
+
+    if name == "rabbitmq":
+        from nebula_sniffer.drivers.rabbitmqdriver import RabbitmqDriver
+        amqp_url = config['amqp_url']
+        queue_name = config['queue_name']
+        exchange_name = config['exchange_name']
+        exchange_type = config['exchange_type']
+        durable = bool(config['durable'])
+        routing_key = config['routing_key']
+        driver = RabbitmqDriver(amqp_url, queue_name, exchange_name, exchange_type, durable, routing_key)
+        return driver
+
+    if name == "kafka":
+        from nebula_sniffer.drivers.kafkadriver import KafkaDriver
+        topics = config['topics']
+        #config['bootstrap_servers']
+        #kafka支持的配置参数
+        #请参考python kafka库的使用方法
+        driver = KafkaDriver(topics, **config)
+        return driver
+
+    return None
+```
+
 
 下面是logstash驱动示例：
 
