@@ -1,5 +1,6 @@
 # 二进制安装
 
+	
 ## Docker 安装
 ### Docker 安装 
 安装一些必要的系统工具：
@@ -102,8 +103,11 @@ source /etc/profile
 
 ## TH-Nebula 安装
 
+	**注意：不支持虚拟机环境**
+	**注意：不支持虚拟机环境**
+	**注意：不支持虚拟机环境**
+		
 ### 安装步骤
-
 
 - 拉取Docker镜像：
 
@@ -136,8 +140,10 @@ source /etc/profile
 
 ## 流量抓取客户端sniffer安装
 
-
-
+	**注意：不支持虚拟机环境**
+	**注意：不支持虚拟机环境**
+	**注意：不支持虚拟机环境**
+	
 ### 安装步骤
 
 - 拉取Docker镜像：
@@ -172,7 +178,7 @@ source /etc/profile
 	docker-compose down
 	```
 	
-
+	
 ## 其他说明
 
 `9001` 端口为 `TH-Nebula`的`http`端口, 可通过 `http://IP：9001`端口的方式访问 `TH-Nebula`界面. 默认用户名`threathunter_test`, 密码为: `threathunter`.
