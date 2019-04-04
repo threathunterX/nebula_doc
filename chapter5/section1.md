@@ -1,4 +1,5 @@
-# Sniffer原理及驱动定制
+# 5.1. Sniffer原理及驱动定制
+
 
 
 sniffer默认使用的是基于bro流量分析的数据源驱动，但也提供了如：redis、kafka、rabbitmq、logstash、UDPServer、syslog、file等其他数据源驱动的demo供大家参考（无法直接使用，需要根据源数据的格式进行调整）
@@ -52,7 +53,7 @@ log_format log_json '{ "@timestamp": "$time_local", '
 
 Nginx日志配置请参考：
     http://nginx.org/en/docs/http/ngx_http_log_module.html#log_format
-    
+
 注：
     日志输出的详细字段、字段顺序、字段名，需要与sniffer中对应驱动的消息格式化处理逻辑一致
 
@@ -98,7 +99,7 @@ output {
 ---------
 
     **此部分需根据自己业务进行修改定制**
-    
+
 修改sniffer.conf
 ```
 #支持同时多源
@@ -151,7 +152,7 @@ default:
     parser:
         name: test
         module: testparser
-        
+
 #对应syslogdriver.py
 syslog:
     driver: syslog
@@ -169,7 +170,7 @@ kafka:
     parser:
         name: test
         module: testparser
-        
+
 ...其他省略...
 
 ```
@@ -178,9 +179,9 @@ kafka:
 --------
 
 
-    
+
 所有驱动位于:
-    
+
     目录：
         sniffer/nebula_sniffer/nebula_sniffer/drivers/
         #bro驱动
@@ -212,7 +213,7 @@ def get_driver(config, interface, parser, idx):
     """ global c """
 
     from complexconfig.configcontainer import configcontainer
-    
+
     #不同driver，初始化方式不同
     name = config['driver']
     if name == "bro":
@@ -310,7 +311,7 @@ def get_driver(config, interface, parser, idx):
 class LogstashDriver(Driver):
 
     ...其他省略...
-    
+
     #对logstash客户端发送过来的消息进行格式化
     def _recv_msg_fn_in(self, msg, addr):
         """
@@ -341,7 +342,7 @@ class LogstashDriver(Driver):
                 msg = json.loads(msg)
             except Exception as e:
                 return
-            
+
             #从消息中提取字段数据
             c_ip = msg.get('scs_http_X_Forwarded_For', '')
             if c_ip:
@@ -402,7 +403,7 @@ class LogstashDriver(Driver):
             args["debug_processing"] = False
 
             self.logger.debug("get http data from logstash: %s", args)
-            
+
             try:
                 #最终格式化为Httpmsg格式
                 new_msg = HttpMsg(**args)
@@ -413,19 +414,19 @@ class LogstashDriver(Driver):
                 return
 
             self.logger.debug("get http msg from logstash: %s", new_msg)
-            
+
             #丢到队列，进行事件提取
             self.put_msg(new_msg)
             self.count += 1
             if self.count % 1000 == 0:
                 print "has put {}".format(self.count)
             return new_msg
-            
+
         except Exception as ex:
             self.logger.error("fail to parse logstash data: %s", ex)
 
     ...其他省略...
-    
+
 ```
 
 #### 事件提取
@@ -441,12 +442,12 @@ class LogstashDriver(Driver):
 class Main(object):
         def event_processor(self):
             ...其他省略...
-            
+
             events = []
             if isinstance(msg, HttpMsg):
                 # 对http信息进行处理，返回一个events（事件列表）
                 events = self.parser.get_events_from_http_msg(msg)
-                        
+
             ...其他省略...
 ```
 
@@ -455,4 +456,3 @@ class Main(object):
 --------
 
     **通用模块，无需修改定制**
-

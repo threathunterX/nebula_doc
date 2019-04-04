@@ -1,4 +1,5 @@
-# 脚本定制
+# 3.3.5. 脚本定制
+
 
 ## 什么是TH-Nebula脚本？
 
@@ -39,7 +40,7 @@
 /etc/nebula/sniffer/sniffer.conf
 ```
 
-配置: 
+配置:
 ```
 sources: [eth0]
 en0:
@@ -52,7 +53,7 @@ en0:
         name: test
         module: testparser
 ```
-`testparser.py`位置: 
+`testparser.py`位置:
 ```
 TH-Nebula_sniffer\TH-Nebula_sniffer\customparsers\testparser.py
 ```
@@ -82,7 +83,7 @@ def arg_from_get(data):
         a, b = e.split('=')
         result[a] = b
     return result
-    
+
 def account_test(httpmsg):
     if not isinstance(httpmsg, HttpMsg):
         return

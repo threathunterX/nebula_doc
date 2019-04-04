@@ -1,4 +1,5 @@
-##  策略优先级
+# 3.3.7. 运营决策
+
 
 风控决策引擎是一堆风控规则的集合, 通过不同的分支, 层层规则的递进关系进行运算.而既然是组合的概念, 则在这些规则中, 以什么样的顺序与优先级执行便额外重要.
 
@@ -28,11 +29,11 @@
 
 ### 请求api方式获取风险
 
-**`/checkRisk`** 风险检测接口, 业务方主动发起风险检测请求, 判定`USER`, `IP`, `DID`,`ORDER ID`是否有风险. 
+**`/checkRisk`** 风险检测接口, 业务方主动发起风险检测请求, 判定`USER`, `IP`, `DID`,`ORDER ID`是否有风险.
 
 参数:  
 `query`:
-需要查询的具体内容, 格式如下(需`url`编码): 
+需要查询的具体内容, 格式如下(需`url`编码):
 
 ```json
 {
@@ -40,7 +41,7 @@
 		{
 			"k": "USER", //检测类型
 			"v": "threathunter_test" //值
-		}, 
+		},
 		{
 			"k": "USER",
 			"v": "threathunter"
@@ -50,14 +51,14 @@
 	"scene_type": "ORDER" //指定场景
 }
 ```
-备注: 
+备注:
 >   检测类型:   ` IP` , `DEVICE ID`, `USER`, `ORDERID`  
 >   场景: `OTHER`, `VISITOR`, `ACCOUNT`, `MARKETING`, `ORDER`, `TRANSACTION`
 
-`auth`: 
- 鉴权用，在`nebula_web` 中 `setting.py`中配置: 
+`auth`:
+ 鉴权用，在`nebula_web` 中 `setting.py`中配置:
 
-示例: 
+示例:
 
 ```
 http://127.0.0.1:9001/checkRisk?auth=7a7c4182f1bef7504a1d3d5eaa51a242&query=%7b>"check_item"%3a%5b%7b"k"%3a"USER"%2c"v"%3a"threathunter_test"%7d%2c%7b"k"%3a"USER"%2c"v"%3a"threathunter"%7d%5d%2c"full_respond"%3atrue%2c"scene_type"%3a"ORDER"%7d
@@ -85,7 +86,7 @@ http://127.0.0.1:9001/checkRisk?auth=7a7c4182f1bef7504a1d3d5eaa51a242&query=%7b>
 	"strategy_name": "IP页面停留时间过短Web", //触发策略名
 	"expire": 1552635833123, //过期时间，跟策略的配置有关
 	"key": "183.15.177.209", //风险值
-	"scene_name": "VISITOR", //风险场景: `OTHER`, `VISITOR`, `ACCOUNT`, `MARKETING`, `ORDER`, `TRANSACTION` 
+	"scene_name": "VISITOR", //风险场景: `OTHER`, `VISITOR`, `ACCOUNT`, `MARKETING`, `ORDER`, `TRANSACTION`
 	"uri_stem": "112.74.58.210/user", //关联页面
 	"trigger_event": "{\"s_ip\": \"172.18.16.169\", \"app\": \"nebula\", \"pid\": \"000000000000000000000000\", \"s_type\": \"text/html; charset=utf-8\", \"uri_stem\": \"112.74.58.210/user\", \"c_bytes\": 0, \"id\": \"5c8b568c12a3650017e176e4\", \"uid\": \"\", \"request_time\": 3, \"platform\": \"\", \"s_body\": \"\", \"sid\": \"\", \"s_port\": 9001, \"method\": \"GET\", \"status\": 200, \"is_static\": false, \"geo_city\": \"\深\圳\市\", \"c_body\": \"\", \"timestamp\": 1552635532701, \"geo_province\": \"\广\东\省\", \"host\": \"112.74.58.210\", \"referer\": \"\", \"c_ip\": \"183.15.177.209\", \"key\": \"183.15.177.209\", \"useragent\": \"python-requests/2.11.1\", \"c_port\": 18311, \"xforward\": \"\", \"c_type\": \"\", \"name\": \"HTTP_DYNAMIC\", \"did\": \"\", \"s_bytes\": 648, \"request_type\": \"\", \"value\": 1.0, \"cookie\": \"group_id=2|1:0|10:1540368603|8:group_id|4:Mg==|30789028a7e8399f5f5ef115fc050e1b3424df25b966755be7554e0048dd29a4; user_id=2|1:0|10:1540368603|7:user_id|4:Mg==|141555b29c711f95ddebea3987820fb90c30a48f506eae9f8cee9b334372ae79; user=attack_test; auth=2|1:0|10:1540368603|4:auth|44:NGJlZTQwMDI0NTExYjM2NDVkNjkzOTM1ZTJmMDllMWY=|34718dcbcac603ee1a38daaa0a05fbafc524873af0fafb0013077a53a28b2d4b\", \"page\": \"112.74.58.210/user\", \"uri_query\": \"\", \"referer_hit\": \"F\"}", //触发事件
 	"geo_province": "广东省", //省
@@ -100,17 +101,17 @@ http://127.0.0.1:9001/checkRisk?auth=7a7c4182f1bef7504a1d3d5eaa51a242&query=%7b>
 键名：
 `{metrics.db.write}db.write.notice_*`
 
-数据过期时间: 
+数据过期时间:
 30分钟
 
-获取方法: 
-通过读取键名为`{metrics.db.write}db.write.notice` (`zset`, 通过时间戳排序) 中的数据`db.write.notice_*`, 与`{metrics.db.write}`进行拼接得到风险数据键名`{metrics.db.write}db.write.notice_*` (`hash`) , 然后获取键值即可获取单条风险数据. 
+获取方法:
+通过读取键名为`{metrics.db.write}db.write.notice` (`zset`, 通过时间戳排序) 中的数据`db.write.notice_*`, 与`{metrics.db.write}`进行拼接得到风险数据键名`{metrics.db.write}db.write.notice_*` (`hash`) , 然后获取键值即可获取单条风险数据.
 
-示例: 
+示例:
 
 ![redis.png](https://www.z4a.net/images/2019/01/21/redis.png)
 
 *注意:*  
 >
 > - 这种方式获取的数据时效性极高, 但是得到的数据不是聚合数据.
-> - 若当前没有风险数据, 上面提到数据键均有可能不存在. 
+> - 若当前没有风险数据, 上面提到数据键均有可能不存在.
