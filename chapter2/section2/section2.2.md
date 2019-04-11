@@ -175,4 +175,8 @@ source /etc/profile
 
 ## 其他说明
 
-`9001` 端口为 `TH-Nebula`的`http`端口, 可通过 `http://IP：9001`端口的方式访问 `TH-Nebula`界面. 默认用户名`threathunter_test`, 密码为: `threathunter`.
+`9001` 端口为 `TH-Nebula`的`http`端口, 可通过 `http://IP：9001`端口的方式访问 `TH-Nebula`界面
+
+`管理员`：threathunter_test ：threathunter
+`超级管理员`：threathunter ：threathunter
+
