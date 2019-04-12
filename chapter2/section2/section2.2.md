@@ -162,17 +162,12 @@ source /etc/profile
 	   - NEBULA_HOST=127.0.0.1 # 远程nebula服务IP
 	   - NEBULA_PORT=9001      # 远程nebulaIP
 
-	   - SOURCES=default,kafka	# 数据源,支持多源
+	   - SOURCES=default       # 数据源,支持多源
 	   
 	   #default,使用bro抓取网卡流量
 	   - DRIVER_INTERFACE=eth0 # 监听网卡
 	   - DRIVER_PORT=80,9001   # 业务服务端口
 	   - BRO_PORT=47000
-	   
-	   #kafka
-	   - BOOTSTRAP_SERVERS=127.0.0.1:9092
-	   - TOPICS=nebula
-	   - GROUP_ID=nebula
 
 	```
 
