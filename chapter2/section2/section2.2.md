@@ -155,13 +155,25 @@ source /etc/profile
 - 配置修改：
 	```
 	配置文件docker-compose.yml（直接修改此文件即可）
+	
 	  environment:
 	   - REDIS_HOST=127.0.0.1  # 远程redisIP
 	   - REDIS_PORT=16379      # 远程redis端口
 	   - NEBULA_HOST=127.0.0.1 # 远程nebula服务IP
 	   - NEBULA_PORT=9001      # 远程nebulaIP
+
+	   - SOURCES=default,kafka	# 数据源,支持多源
+	   
+	   #default,使用bro抓取网卡流量
 	   - DRIVER_INTERFACE=eth0 # 监听网卡
 	   - DRIVER_PORT=80,9001   # 业务服务端口
+	   - BRO_PORT=47000
+	   
+	   #kafka
+	   - BOOTSTRAP_SERVERS=127.0.0.1:9092
+	   - TOPICS=nebula
+	   - GROUP_ID=nebula
+
 	```
 
 - 启动停止镜像：
@@ -178,5 +190,6 @@ source /etc/profile
 `9001` 端口为 `TH-Nebula`的`http`端口, 可通过 `http://IP：9001`端口的方式访问 `TH-Nebula`界面
 
 `管理员`：threathunter_test ：threathunter
+
 `超级管理员`：threathunter ：threathunter
 
