@@ -40,6 +40,12 @@ Docker version 18.09.0, build 4d60db4
 
 ![2141eb541d4d8721c.png](http://www.z4a.net/images/2018/12/06/2141eb541d4d8721c.png)
 
+设置Docker开机自启：
+
+```
+sudo systemctl enable docker
+```
+
 ### docker-compose 安装
 
 接下来安装 docker-compose, 首先更新 curl 工具
