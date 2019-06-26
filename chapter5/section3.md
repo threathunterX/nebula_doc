@@ -16,7 +16,7 @@ Bro 模式
 
 #### 成功的启动日志
 正确的启动提示 bro 模式
-
+```
 >docker-compose up
 /usr/lib/python2.7/site-packages/requests/__init__.py:80: RequestsDependencyWarning: urllib3 (1.22) or chardet (2.2.1) doesn't match a supported version!
 RequestsDependencyWarning)
@@ -54,7 +54,7 @@ nebula_sniffer_9003 | receive update_staticresourcesuffix=gif,png,ico,css,js,csv
 nebula_sniffer_9003 | receive update_filteredhosts=
 nebula_sniffer_9003 | receive update_filteredurls=
 nebula_sniffer_9003 | receive update_filteredservers=
-
+```
 #### bro的排查流程
 启动日志有一些 warning 没啥关系, 这些是 bro 引擎中的
 可以在启动提示中首先确认
@@ -70,7 +70,7 @@ kafka 模式
 
 #### 成功启动的日志
 成功链接kafka模式的启动日志
-
+```
 [root@test-02 /home/wei/sniffer]# docker-compose up
 /usr/lib/python2.7/site-packages/requests/__init__.py:80: RequestsDependencyWarning: urllib3 (1.22) or chardet (2.2.1) doesn't match a supported version!
 RequestsDependencyWarning)
@@ -99,7 +99,7 @@ nebula_sniffer_9003 | 2019-06-19 17:34:35: start to processing
 nebula_sniffer_9003 | creat logger sniffer.httpmsg
 nebula_sniffer_9003 | creat logger sniffer.parser.defaultparser
 nebula_sniffer_9003 | creat logger sniffer.driver.kafka
-
+```
 #### kafka的排查流程
 无法链接kafka, 解决办法
 
@@ -129,7 +129,7 @@ wget http://apache.lauf-forum.at/kafka/2.2.1/kafka_2.11-2.2.1.tgz
 
 1. 启动失败, 无法链接 kafka 会出现以下日志
 
-
+```
 [root@test-02 /home/wei/sniffer]# docker-compose up
 /usr/lib/python2.7/site-packages/requests/__init__.py:80: RequestsDependencyWarning: urllib3 (1.22) or chardet (2.2.1) doesn't match a supported version!
 RequestsDependencyWarning)
@@ -166,7 +166,7 @@ nebula_sniffer | NoBrokersAvailable: NoBrokersAvailable
 nebula_sniffer | creat logger main.client-any-1
 nebula_sniffer | terminating
 nebula_sniffer exited with code 0
-
+```
 
 
 配置验证程序
@@ -175,7 +175,7 @@ nebula_sniffer exited with code 0
 
 1. 将 sniffer_nebula_test.py requirements.txt 放置在 sniffer 文件夹中
 2. 安装依赖:
-
+```
 pip3 install -r requirements.txt
 
 requirements.txt 内容
@@ -192,7 +192,7 @@ redis==3.2.1
 requests==2.22.0
 six==1.12.0
 urllib3==1.25.3
-
+```
 1. python3 sniffer_nebula_test.py
 2. 输入监控的网址接口or IP地址端口, 输入的ip端口是 openresty nginx 监控的流量到lua脚本, lua脚本到kafka)
 
