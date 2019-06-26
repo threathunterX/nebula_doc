@@ -35,4 +35,5 @@
 * [5. 二次开发](chapter5/section0.md)
     * [5.1. Sniffer原理及驱动定制](chapter5/section1.md)
     * [5.2. Sniffer nginx kafka驱动支持](chapter5/section2.md)
+    * [5.3. Sniffer测试以及debug](chapter5/section3.md)
 
